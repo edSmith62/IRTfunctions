@@ -1,0 +1,53 @@
+#January 17, 2019
+#James Smith
+#University of Arizona
+#TLS 574: IRT
+#--------------------------
+#Description:
+# Function for seeing the effects of parameters on IRT response functions. 
+# Function creates an animated function
+#----------------------------
+#Table of contents:
+#	1) Function
+# 2) Sample graphs
+#-----------------------------------
+
+#-------------
+#1) FUNCTION
+#-------------
+
+
+irtPlots <- function(theta = NULL, a = alpha, b = beta, g = 1){
+
+if(is.null(theta) == T){theta <- seq(-3,3,.1)}
+	
+if(length(b) == 1) {
+ for(i in 1:length(a)){
+	flush.console()
+	x <- g+(1-g)*(exp(a[i]*(theta-b)) / (1+exp(a[i]*(theta-b))))
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	main = paste0("alpha=", a[i]," beta=", b))
+	Sys.sleep(.09)
+	}}
+
+else if(length(a) == 1) {
+ for(i in 1:length(b)){
+	flush.console()
+	x <- g+(1-g)*(exp(a*(theta-b[i])) / (1+exp(a*(theta-b[i]))))
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	main = paste0("alpha=", a," beta=", b[i]))
+	Sys.sleep(.09)
+	}}
+
+else if(length(a) != length(b)){print("ERROR: Length of alpha and beta must be equal")}
+else{
+for(i in 1:length(a)){
+	flush.console()
+	x <- g+(1-g)*(exp(a[i]*(theta-b[i])) / (1+exp(a[i]*(theta-b[i]))))
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	main = paste0("alpha=", a[i]," beta=", b[i]))
+	Sys.sleep(.09)
+	}}
+
+}
+
