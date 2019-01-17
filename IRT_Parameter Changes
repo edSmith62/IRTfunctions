@@ -9,7 +9,7 @@
 #----------------------------
 #Table of contents:
 #	1) Function
-# 2) Sample graphs
+#       2) Sample graphs
 #-----------------------------------
 
 #-------------
@@ -25,7 +25,7 @@ if(length(b) == 1) {
  for(i in 1:length(a)){
 	flush.console()
 	x <- g+(1-g)*(exp(a[i]*(theta-b)) / (1+exp(a[i]*(theta-b))))
-	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2, col = "blue",
 	main = paste0("alpha=", a[i]," beta=", b))
 	Sys.sleep(.09)
 	}}
@@ -34,7 +34,7 @@ else if(length(a) == 1) {
  for(i in 1:length(b)){
 	flush.console()
 	x <- g+(1-g)*(exp(a*(theta-b[i])) / (1+exp(a*(theta-b[i]))))
-	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2, col = "blue",
 	main = paste0("alpha=", a," beta=", b[i]))
 	Sys.sleep(.09)
 	}}
@@ -44,10 +44,20 @@ else{
 for(i in 1:length(a)){
 	flush.console()
 	x <- g+(1-g)*(exp(a[i]*(theta-b[i])) / (1+exp(a[i]*(theta-b[i]))))
-	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2,
+	plot(theta,x,ylim = c(0,1), type = "l", lwd = 2, col = "blue",
 	main = paste0("alpha=", a[i]," beta=", b[i]))
 	Sys.sleep(.09)
 	}}
 
 }
+
+
+#Sample animated graph with varying alpha
+irtPlots(a = seq(0,5,.1), b = 1)
+
+##Sample animated graph with varying beta
+irtPlots(a = 2, b = seq(-3,3,.1))
+
+#Plotting alpha and beta values
+irtPlots(a = 3, b = 1)
 
